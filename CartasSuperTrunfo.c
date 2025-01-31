@@ -7,6 +7,8 @@
 //Teste Bruno
 
 int main(){
+    printf ("Super Trunfo - Países");
+
     char Estado;
     char Codigo[50];
     char Cidade[50];
@@ -48,7 +50,7 @@ int main(){
     printf ("Area: %f\n", Area);
 
     printf ("PIB: %f\n", PIB);
-    
+
     printf ("Pontos: %d\n", PIB);
 
 
