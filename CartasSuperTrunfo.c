@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 // Desafio Super Trunfo - Países
 // Tema 1 - Cadastro das Cartas
@@ -6,58 +8,69 @@
 // Siga os comentários para implementar cada parte do desafio.
 //Teste Bruno
 
-int main(){
-    printf ("Super Trunfo - Países");
+int main() {
+    printf("Super Trunfo - Países\n");
 
-    char Estado;
-    char Codigo[50];
-    char Cidade[50];
+    char Estado;  // Um único caractere para armazenar o estado (A a H)
+    char Codigo[5];  // Código da cidade (exemplo: A01, B02)
+    char Cidade[50];  // Nome da cidade
     int Populacao;
     float Area;
     float PIB;
     int Pontos;
 
-    
-    printf ("Digite o Estado: \n");
-    scanf ("%s", &Estado);
-    
-    printf ("Digite o Codigo da carta: \n");
-    scanf ("%d", &Codigo);
+    // Loop para percorrer os estados de A a H
+    for (Estado = 'A'; Estado <= 'H'; Estado++) {
+        printf("\nCadastro do Estado %c\n", Estado);
 
-    printf ("Digite o nome da cidade; \n");
-    scanf ("%s", &Cidade);
+        // Loop para as 4 cidades de cada estado
+        for (int i = 0; i < 4; i++) {
+            // Solicita o código da cidade
+            printf("\nDigite o Código da cidade do estado %c: ", Estado, Estado);
+            scanf("%s", Codigo);  // Leitura do código da cidade (como A01, A02...)
 
-    printf ("Digite a População: \n");
-    scanf ("%d", &Populacao);
+            // Verifica se o código é válido
+            if (Codigo[0] != Estado) {
+                printf("Código inválido! O código deve começar com %c.\n", Estado);
+                i--;  // Repetir a solicitação para a mesma cidade
+                continue;
+            }
 
-    printf ("Digite a Área em Km²: \n");
-    scanf ("%f", &Area);
+            printf("\nCadastro da cidade do estado %c - Código: %s\n", Estado, Codigo);
 
-    printf ("Digite o PIB: \n");
-    scanf ("%f", &PIB);
+            // Captura o nome da cidade
+            printf("Digite o nome da cidade %s: ", Codigo);
+            getchar();  // Limpar o buffer
+            fgets(Cidade, sizeof(Cidade), stdin);
+            Cidade[strcspn(Cidade, "\n")] = 0;  // Remove o '\n' da string
 
-    printf ("Digite o número de Pontos Túristicos: \n");
-    scanf ("%d", &Pontos);
+            // Captura a População
+            printf("Digite a População da cidade %s: ", Codigo);
+            scanf("%d", &Populacao);
 
-    printf ("Estado: %s\n", Estado);
+            // Captura a Área em Km²
+            printf("Digite a Área em Km² da cidade %s: ", Codigo);
+            scanf("%f", &Area);
 
-    printf ("Codigo: %d\n", Codigo);
+            // Captura o PIB da cidade
+            printf("Digite o PIB da cidade %s (em bilhões de Reais): ", Codigo);
+            scanf("%f", &PIB);
 
-    printf ("Cidade: %s\n", Cidade);
+            // Captura o número de Pontos Turísticos
+            printf("Digite o número de Pontos Turísticos da cidade %s: ", Codigo);
+            scanf("%d", &Pontos);
 
-    printf ("Populacao: %d\n", Populacao);
-
-    printf ("Area: %f\n", Area);
-
-    printf ("PIB: %f\n", PIB);
-
-    printf ("Pontos: %d\n", PIB);
-
-
-
-
-
-
+            // Exibe os dados da cidade cadastrada
+            printf("\n----- Dados da Carta -----\n");
+            printf("Estado: %c\n", Estado);
+            printf("Código: %s\n", Codigo);
+            printf("Cidade: %s\n", Cidade);
+            printf("População: %d habitantes\n", Populacao);
+            printf("Área: %.2f km²\n", Area);
+            printf("PIB: %.2f bilhões de Reais\n", PIB);
+            printf("Pontos Turísticos: %d\n", Pontos);
+        }
+    }
 
     // Sugestão: Defina variáveis separadas para cada atributo da cidade.
     // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
@@ -71,4 +84,5 @@ int main(){
     // Exiba os valores inseridos para cada atributo da cidade, um por linha.
 
     return 0;
-}
+
+    }
