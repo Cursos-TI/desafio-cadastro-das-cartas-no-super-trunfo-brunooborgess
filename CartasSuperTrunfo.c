@@ -42,7 +42,7 @@ int main() {
             printf("Digite o nome da cidade %s: ", Codigo);
             getchar();  // Limpar o buffer
             fgets(Cidade, sizeof(Cidade), stdin);
-            Cidade[strcspn(Cidade, "\n")] = 0;  // Remove o '\n' da string
+            Cidade[strcspn(Cidade, "\n")] = 0; 
 
             // Captura a População
             printf("Digite a População da cidade %s: ", Codigo);
